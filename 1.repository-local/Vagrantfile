@@ -5,7 +5,12 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "hashicorp/precise64"
+  #config.vm.box = "hashicorp/precise64"
+  # Document reference to https://blog.centos.org/2019/07/updated-centos-vagrant-images-available-v1905-01/
+  config.vm.box = "centos/7"
+
+  # please install "vagrant-disksize" by vagrant plugin install vagrant-disksize
+  # config.disksize.size = '50GB'
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -20,6 +25,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, guest: 80, host:1234
 
+
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
@@ -28,6 +34,9 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network "private_network", ip: "192.168.33.10"
+  # config.vm.network "private_network", ip: "192.168.33.10",
+  # virtualbox__intnet: true
+  # virtualbox__intnet: "testnetwork"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -39,18 +48,42 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
+  # centos share folder setup, install the vagrant-vbguest plugin and add the following line to your Vagrantfile:
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  # map local aliclould repository to /mirror
+  config.vm.synced_folder "/c/aliclould-mirror", "/mirror", type: "virtualbox"
+
+
+  #disable the sync directory by adding the line for centos
+  #config.vm.synced_folder ".", "/vagrant", disabled: true
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "test"
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
+    vb.customize ["modifyvm", :id, "--cpuexecutioncap", "90"]
+    vb.memory = "4096"
+    vb.cpus = 4
+    
+  #could not resolve host by adding the following line for centos
+  #  vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+  end  
+  
+
+  #Verifying the integrity of the images for centos
+  #config.vm.provider :virtualbox do |override|
+   # override.vm.box_download_checksum_type = "sha256"
+   # override.vm.box_download_checksum = "b24c912b136d2aa9b7b94fc2689b2001c8d04280cf25983123e45b6a52693fb3"
+   # override.vm.box_url = "https://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1803_01.VirtualBox.box"
+  #end
+  
+
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -62,5 +95,6 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
-  config.vm.provision :shell, path: "bootstrap.sh"
+  config.vm.provision :shell, path: "showdate.sh"
+  config.vm.provision :shell, path: "bootstrap_centos.sh" 
 end
