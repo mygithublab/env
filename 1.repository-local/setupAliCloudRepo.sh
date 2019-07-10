@@ -15,7 +15,7 @@ wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo
 yum repolist
 
 #Sync AliCloud repository to local
-##Create local folder which save rpm packages
+##Create local folder which save rpm packages, the size of total rpm packages is about 36.5GB
 mkdir /mirror
 ##Sync to local folder
 reposync -p /mirror
