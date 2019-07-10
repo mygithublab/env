@@ -31,6 +31,8 @@ createrepo --update /mirror/base
 createrepo --update /mirror/extras
 createrepo --update /mirror/updates
 createrepo --update /mirror/epel
+##Run crontab
+
 
 
 
