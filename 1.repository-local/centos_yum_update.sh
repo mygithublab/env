@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Updating AliCloud CentOS7 Repository Source'
-DATETIME=`date +%Y-%m-%d_%H:%M:%S`
+DATETIME=`date +%Y-%m-%d_%H-%M-%S`
 exec > /var/log/AliCloud_CentOS7_Repo_$DATETIME.log
    reposync -np /mirror
 if [ $? -eq 0 ]; then
