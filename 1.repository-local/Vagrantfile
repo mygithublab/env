@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
   # centos share folder setup, install the vagrant-vbguest plugin and add the following line to your Vagrantfile:
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   # map local aliclould repository to /mirror
-  config.vm.synced_folder "/c/aliclould-mirror", "/mirror", type: "virtualbox"
+  config.vm.synced_folder "aliclould-mirror", "/mirror", type: "virtualbox"
 
 
   #disable the sync directory by adding the line for centos
@@ -96,6 +96,10 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
   # config.vm.provision :shell, path: "showdate.sh"
-  config.vm.provision :shell, path: "bootstrap_centos.sh"
-  config.vm.provision :sheel, path: "crontab_centos_yum_update.sh"
+  # config.vm.provision :shell, path: "bootstrap_centos.sh"
+  config.vm.provision :shell, path: "setupAliCloudRepo.sh"
+  config.vm.provision :shell, path: "crontab_centos_yum_update.sh"
+  config.vm.provision :shell, path: "nginx_installation.sh"
+  config.vm.provision :shell, path: "seliux_disable.sh"
+  config.vm.provision :shell, path: "timezone_setup.sh"
 end
