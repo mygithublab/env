@@ -16,18 +16,18 @@ yum repolist
 
 #Sync AliCloud repository to local
 ##Create local folder which save rpm packages, the size of total rpm packages is about 36.5GB
-mkdir /mirror
+mkdir -p /mirror/centos7
 ##Sync to local folder
-reposync -p /mirror
+reposync -p /mirror/centos7
 ##Sync updated rpm packages
-reposync -np /mirror
+reposync -np /mirror/centos7
 ##Create index
-createrepo -po /mirror/base/ /mirror/base/
-createrepo -po /mirror/extras/ /mirror/extras/
-createrepo -po /mirror/updates/ /mirror/updates/
-createrepo -po /mirror/epel/ /mirror/epel/
+createrepo -po /mirror/centos7/base/ /mirror/centos7/base/
+createrepo -po /mirror/centos7/extras/ /mirror/centos7/extras/
+createrepo -po /mirror/centos7/updates/ /mirror/centos7/updates/
+createrepo -po /mirror/centos7/epel/ /mirror/centos7/epel/
 ##Update data source
-createrepo --update /mirror/base
-createrepo --update /mirror/extras
-createrepo --update /mirror/updates
-createrepo --update /mirror/epel
+createrepo --update /mirror/centos7/base
+createrepo --update /mirror/centos7/extras
+createrepo --update /mirror/centos7/updates
+createrepo --update /mirror/centos7/epel
