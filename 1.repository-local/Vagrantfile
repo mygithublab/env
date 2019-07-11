@@ -51,7 +51,7 @@ Vagrant.configure("2") do |config|
   # centos share folder setup, install the vagrant-vbguest plugin and add the following line to your Vagrantfile:
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   # map local aliclould repository to /mirror
-  config.vm.synced_folder "aliclould-mirror", "/mirror/centos7", type: "virtualbox"
+  config.vm.synced_folder "alicloud-mirror", "/mirror/centos7", type: "virtualbox"
 
 
   #disable the sync directory by adding the line for centos
