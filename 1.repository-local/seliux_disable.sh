@@ -1,4 +1,5 @@
 #!/bin/bash
 
-sed -i '7 s/enforcing/disabled/' /etc/selinux/config
+sudo sed -i '7 s/enforcing/disabled/' /etc/selinux/config
 
+sudo setenforce Permissive

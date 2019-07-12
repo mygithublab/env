@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+sudo cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
