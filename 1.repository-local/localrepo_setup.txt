@@ -1,0 +1,71 @@
+vim  /etc/yum.repo.d/localrepo.repo
+
+
+[base]
+
+name=CentOS-$releasever - Base - localrepository
+
+baseurl=http://localrepo-ip/centos7/base/
+
+path=/
+
+enabled=1
+
+gpgcheck=0
+
+
+
+[updates]
+
+name=CentOS-$releasever - Updates - localrepository
+
+baseurl=http://localrepo-ip/centos7/updates/
+
+path=/
+
+enabled=1
+
+gpgcheck=0
+
+
+
+[extras]
+
+name=CentOS-$releasever - Extras - localrepository
+
+baseurl=http://localrepo-ip/centos7/extras/
+
+path=/
+
+enabled=1
+
+gpgcheck=0
+
+
+
+[epel]
+
+name=CentOS-$releasever - epel - localrepository
+
+baseurl=http://localrepo-ip/centos7/epel/
+
+failovermethod=priority
+
+enabled=1
+
+gpgcheck=0
+
+
+
+[jenkins]
+
+name=CentOS-$releasever - epel - localrepository
+
+baseurl=http://localrepo-ip/centos7/jenkins/
+
+failovermethod=priority
+
+enabled=1
+
+gpgcheck=0
+
