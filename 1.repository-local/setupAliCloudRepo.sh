@@ -4,6 +4,7 @@ sudo cd /home/vagrant
 sudo tar -zcvf CentOS.bk.tar.gz /etc/yum.repos.d/CentOS-*
 #Prerequisite software installation
 sudo yum install -y wget make cmake gcc gcc-c++ pcre-devel zlib-devel openssl openssl-devel createrepo yum-utils
+sudo yum -y update
 #Setup CentOS7 repository
 sudo wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 sudo wget -O /etc/yum.repos.d/epel.repo http://mirrors.aliyun.com/repo/epel-7.repo

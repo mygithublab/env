@@ -95,6 +95,9 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  
+  # config.vm.provision "file", source: "~/path/to/host/folder", destination: "$HOME/remote/newfolder"
+
   # config.vm.provision :shell, path: "showdate.sh"
   # config.vm.provision :shell, path: "bootstrap_centos.sh"
   config.vm.provision :shell, path: "setupAliCloudRepo.sh"
